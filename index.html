@@ -1,74 +1,35 @@
-var readlineSync = require("readline-sync");
 
-var score = 0;
 
-// data of high score
-var highScores = [
-  {
-    name: "Tanay",
-    score: 3,
-  },
+var readlineSync= require("readline-sync");
+var username= readlineSync.question("HELLO!, What Is Your Name? ");
 
-  {
-    name: "Akash",
-    score: 2,
-  },
-]
-
-// array of objects
-var questions = [{
-  question: "What's the full and original name of Captain America?",
-  answer: "Steve Rogers"
-}, {
-  question: "What's Thor's hammer called?",
-  answer: "Mjolnir"
-},
-{
-  question: "Do you know what's Spiderman's real name?",
-  answer: "Peter Parker"
-}];
-
-function welcome() {
- var userName = readlineSync.question("What's your name? ");
-
-  console.log("Welcome "+ userName + "let's see if you know Marvel Cinematic Universe");
+console.log("Welcome To The Game, Who Knows Ishan The Best, "+ username +"? ")
+var score=0
+//play function
+function play(question,answer){
+  var userAnswer= readlineSync.question(question);
+    if(userAnswer===answer){
+      console.log("You are correct")
+      score= score + 1 
+    }
+ else{
+   console.log("You are wrong! ")
+ } 
+ console.log("current score: "+ score);
+ console.log("_______________");
 }
 
 
-// play function
-function play(question, answer) {
-  var userAnswer = readlineSync.question(question);
+play("How old is Ishan? ", "21")
+play("Where Does Ishan live? ", "Mumbai")
+play("favourite food? ", "Biryani")
+play("favourite sperhero? ", "Iron-Man")
+play("Favourite Sport? ", "Cricket")
 
-  if (userAnswer.toUpperCase() === answer.toUpperCase()) { // branching
-    console.log("right!");
-    score = score + 1;
-    
-  } else {
-    console.log("wrong!");
-   
-  }
+console.log("Total Score: "+ score)
 
-  console.log("current score: ", score);
-  console.log("-------------")
-}
+console.log("High Score: " )
+console.log( "Meera: 5")
+console.log("Prashant: 4")
 
-function game() {
-  for (var i=0; i<questions.length; i++) {
-    var currentQuestion = questions[i];
-    play(currentQuestion.question, currentQuestion.answer)
-  }
-}
-
-function showScores() {
-  console.log("YAY! You SCORED: ", score);
-
-  console.log("Check out the high scores, if you should be there ping me and I'll update it");
-
-  highScores.map(score => console.log(score.name, " : ", score.score))
-}
-
-
-welcome();
-game();
-showScores();
 
